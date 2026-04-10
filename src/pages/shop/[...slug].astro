@@ -1,0 +1,225 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+	const products = await getCollection('products');
+	return products.map(product => ({
+		params: { slug: product.id },
+		props: product,
+	}));
+}
+
+const product = Astro.props;
+const { title, category, price, available, description, stripeLink, image, dimensions, paper, edition } = product.data;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} — Cyan Studio`} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="breadcrumb">
+				<a href="/shop">Shop</a>
+				<span>›</span>
+				<a href={`/shop/${category.toLowerCase()}`}>{category}</a>
+				<span>›</span>
+				<span>{title}</span>
+			</div>
+
+			<div class="product-layout">
+				<div class="product-image">
+					{image
+						? <img src={image} alt={title} />
+						: <div class="img-placeholder"></div>
+					}
+				</div>
+
+				<div class="product-details">
+					<span class="product-category">{category}</span>
+					<h1>{title}</h1>
+					<p class="product-price">CA${price.toFixed(2)}</p>
+
+					<p class="product-desc">{description}</p>
+
+					<div class="product-meta">
+						{dimensions && (
+							<div class="meta-row">
+								<span class="meta-label">Dimensions</span>
+								<span class="meta-value">{dimensions}</span>
+							</div>
+						)}
+						{paper && (
+							<div class="meta-row">
+								<span class="meta-label">Paper</span>
+								<span class="meta-value">{paper}</span>
+							</div>
+						)}
+						{edition && (
+							<div class="meta-row">
+								<span class="meta-label">Edition</span>
+								<span class="meta-value">{edition}</span>
+							</div>
+						)}
+						<div class="meta-row">
+							<span class="meta-label">Availability</span>
+							<span class={`meta-value ${available ? 'in-stock' : 'sold-out'}`}>
+								{available ? 'Available' : 'Sold out'}
+							</span>
+						</div>
+					</div>
+
+					{available && stripeLink ? (
+						<a href={stripeLink} class="buy-btn" target="_blank" rel="noopener">
+							Buy now — CA${price.toFixed(2)}
+						</a>
+					) : available && !stripeLink ? (
+						<a href="/contact" class="buy-btn enquire">
+							Enquire about this piece
+						</a>
+					) : (
+						<button class="buy-btn sold-out-btn" disabled>Sold out</button>
+					)}
+
+					<p class="shipping-note">Free shipping within Canada on orders over $75. All work is carefully packed using recycled materials.</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 2em 1.5em 5em;
+	}
+	.breadcrumb {
+		display: flex;
+		gap: 0.5em;
+		align-items: center;
+		font-size: 0.78em;
+		color: var(--text-muted);
+		margin-bottom: 2em;
+	}
+	.breadcrumb a { color: var(--text-muted); text-decoration: none; }
+	.breadcrumb a:hover { color: var(--prussian); }
+	.breadcrumb span { color: var(--sand-muted); }
+
+	.product-layout {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4em;
+		align-items: start;
+	}
+	.product-image {
+		border-radius: 8px;
+		overflow: hidden;
+		aspect-ratio: 3/4;
+		background: var(--cyan-pale);
+	}
+	.product-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+	}
+	.img-placeholder {
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, var(--cyan-pale) 0%, #d4eef2 100%);
+	}
+
+	.product-category {
+		font-size: 0.72em;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: var(--cyan-dark);
+		display: block;
+		margin-bottom: 0.5em;
+	}
+	h1 {
+		font-size: 1.9em;
+		color: var(--prussian);
+		margin: 0 0 0.4em;
+		line-height: 1.2;
+	}
+	.product-price {
+		font-size: 1.3em;
+		font-weight: 700;
+		color: var(--prussian);
+		margin: 0 0 1.5em;
+	}
+	.product-desc {
+		font-size: 0.93em;
+		color: var(--text-muted);
+		line-height: 1.8;
+		margin: 0 0 2em;
+	}
+	.product-meta {
+		border-top: 1px solid var(--border);
+		border-bottom: 1px solid var(--border);
+		padding: 1em 0;
+		margin-bottom: 1.75em;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6em;
+	}
+	.meta-row {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.83em;
+	}
+	.meta-label {
+		color: var(--sand-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		font-size: 0.9em;
+	}
+	.meta-value { color: var(--prussian); }
+	.in-stock { color: var(--cyan-dark); }
+	.sold-out { color: var(--sand-muted); }
+
+	.buy-btn {
+		display: block;
+		width: 100%;
+		background: var(--prussian);
+		color: var(--sand-light);
+		text-align: center;
+		padding: 1em;
+		border-radius: 6px;
+		text-decoration: none;
+		font-size: 0.9em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		border: none;
+		cursor: pointer;
+		font-family: inherit;
+		transition: background 0.2s;
+		margin-bottom: 1em;
+		box-sizing: border-box;
+	}
+	.buy-btn:hover { background: var(--prussian-dark); color: var(--sand-light); }
+	.buy-btn.enquire { background: transparent; color: var(--prussian); border: 1.5px solid var(--prussian); }
+	.buy-btn.enquire:hover { background: var(--prussian); color: var(--sand-light); }
+	.buy-btn.sold-out-btn { background: var(--border); color: var(--sand-muted); cursor: not-allowed; }
+
+	.shipping-note {
+		font-size: 0.78em;
+		color: var(--sand-muted);
+		line-height: 1.6;
+		margin: 0;
+		text-align: center;
+	}
+
+	@media (max-width: 720px) {
+		.product-layout { grid-template-columns: 1fr; gap: 2em; }
+		h1 { font-size: 1.6em; }
+	}
+</style>

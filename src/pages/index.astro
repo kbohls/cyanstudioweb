@@ -13,38 +13,228 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<div class="hero-text">
+					<p class="hero-location">Ucluelet, BC</p>
+					<h1>Prints made<br/>by the sun.</h1>
+					<p class="hero-desc">
+						Hi &amp; welcome to my online shop! I have been experimenting with cyanotypes
+						for the past few years and wanted a space to share my prints more widely.
+						Cyanotype is the process of developing an image using the sun — each composition
+						is carefully handcrafted using hand-collected seaweeds and coastal botanicals
+						from here in Ucluelet.
+					</p>
+					<div class="hero-actions">
+						<a href="/shop" class="btn-primary">Browse the shop</a>
+						<a href="/about" class="btn-secondary">About the process</a>
+					</div>
+				</div>
+				<div class="hero-aside">
+					<div class="process-card">
+						<div class="process-step">
+							<span class="step-num">01</span>
+							<span>Gather coastal botanicals &amp; seaweeds</span>
+						</div>
+						<div class="process-step">
+							<span class="step-num">02</span>
+							<span>Coat archival paper with cyanotype solution</span>
+						</div>
+						<div class="process-step">
+							<span class="step-num">03</span>
+							<span>Arrange composition &amp; expose to sunlight</span>
+						</div>
+						<div class="process-step">
+							<span class="step-num">04</span>
+							<span>Wash in water — the cyan blue appears</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="shop-preview">
+				<div class="section-header">
+					<h2>Current collection</h2>
+					<a href="/shop" class="view-all">View all →</a>
+				</div>
+				<div class="product-grid-placeholder">
+					<div class="placeholder-card">
+						<div class="placeholder-img"></div>
+						<p class="placeholder-label">Originals</p>
+						<p class="placeholder-sub">One-of-a-kind prints</p>
+					</div>
+					<div class="placeholder-card">
+						<div class="placeholder-img"></div>
+						<p class="placeholder-label">Prints</p>
+						<p class="placeholder-sub">Limited edition reproductions</p>
+					</div>
+					<div class="placeholder-card">
+						<div class="placeholder-img"></div>
+						<p class="placeholder-label">New arrivals</p>
+						<p class="placeholder-sub">Fresh from the darkroom</p>
+					</div>
+				</div>
+				<p class="shop-note">Products coming soon — check back shortly or <a href="/contact">get in touch</a> to be notified.</p>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 0 1.5em 4em;
+	}
+
+	/* ── Hero ── */
+	.hero {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3em;
+		align-items: center;
+		padding: 4em 0 3em;
+		border-bottom: 1px solid var(--border);
+	}
+	.hero-location {
+		font-size: 0.75em;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--cyan-mid);
+		margin: 0 0 0.75em;
+	}
+	.hero h1 {
+		font-size: 3.2em;
+		line-height: 1.05;
+		color: var(--prussian);
+		margin: 0 0 0.6em;
+	}
+	.hero-desc {
+		font-size: 1em;
+		color: var(--text-muted);
+		line-height: 1.75;
+		margin: 0 0 1.75em;
+		max-width: 42ch;
+	}
+	.hero-actions {
+		display: flex;
+		gap: 1em;
+		flex-wrap: wrap;
+	}
+	.btn-primary {
+		background: var(--prussian);
+		color: var(--sand-light);
+		padding: 0.7em 1.5em;
+		border-radius: 4px;
+		text-decoration: none;
+		font-size: 0.85em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: background 0.2s;
+	}
+	.btn-primary:hover { background: var(--prussian-dark); color: var(--sand-light); }
+	.btn-secondary {
+		color: var(--prussian);
+		padding: 0.7em 1.5em;
+		border-radius: 4px;
+		border: 1.5px solid var(--prussian);
+		text-decoration: none;
+		font-size: 0.85em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: all 0.2s;
+	}
+	.btn-secondary:hover { background: var(--prussian); color: var(--sand-light); }
+
+	/* ── Process card ── */
+	.process-card {
+		background: var(--prussian);
+		border-radius: 8px;
+		padding: 2em;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25em;
+	}
+	.process-step {
+		display: flex;
+		gap: 1em;
+		align-items: flex-start;
+		color: var(--sand);
+		font-size: 0.88em;
+		line-height: 1.5;
+	}
+	.step-num {
+		font-size: 0.7em;
+		letter-spacing: 0.1em;
+		color: var(--cyan-mid);
+		padding-top: 0.2em;
+		flex-shrink: 0;
+	}
+
+	/* ── Shop preview ── */
+	.shop-preview {
+		padding: 3em 0;
+	}
+	.section-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		margin-bottom: 1.5em;
+	}
+	.section-header h2 {
+		font-size: 1.4em;
+		color: var(--prussian);
+		margin: 0;
+	}
+	.view-all {
+		font-size: 0.85em;
+		color: var(--cyan-dark);
+		text-decoration: none;
+		letter-spacing: 0.04em;
+	}
+	.view-all:hover { color: var(--prussian); }
+	.product-grid-placeholder {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25em;
+		margin-bottom: 1.5em;
+	}
+	.placeholder-card {
+		border: 1px solid var(--border);
+		border-radius: 6px;
+		overflow: hidden;
+	}
+	.placeholder-img {
+		background: var(--cyan-pale);
+		aspect-ratio: 3/4;
+		width: 100%;
+	}
+	.placeholder-label {
+		font-size: 0.9em;
+		font-weight: 700;
+		color: var(--prussian);
+		margin: 0.75em 1em 0.15em;
+	}
+	.placeholder-sub {
+		font-size: 0.78em;
+		color: var(--text-muted);
+		margin: 0 1em 0.75em;
+	}
+	.shop-note {
+		font-size: 0.85em;
+		color: var(--text-muted);
+		text-align: center;
+		margin: 0;
+	}
+	.shop-note a { color: var(--cyan-dark); }
+
+	/* ── Responsive ── */
+	@media (max-width: 720px) {
+		.hero { grid-template-columns: 1fr; gap: 2em; padding: 2.5em 0 2em; }
+		.hero h1 { font-size: 2.4em; }
+		.product-grid-placeholder { grid-template-columns: 1fr 1fr; }
+	}
+	@media (max-width: 480px) {
+		.product-grid-placeholder { grid-template-columns: 1fr; }
+	}
+</style>

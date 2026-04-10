@@ -1,0 +1,38 @@
+backend:
+  name: github
+  repo: krista-bohlen3/cyanstudioweb
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: products
+    label: "Products"
+    label_singular: "Product"
+    folder: src/content/products
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Product Name", name: title, widget: string }
+      - { label: "Category", name: category, widget: select, options: ["Originals", "Prints"] }
+      - { label: "Price (CAD $)", name: price, widget: number, value_type: float }
+      - { label: "Available for sale", name: available, widget: boolean, default: true }
+      - { label: "Description", name: description, widget: text }
+      - { label: "Stripe Payment Link", name: stripeLink, widget: string, required: false, hint: "Paste the https://buy.stripe.com/... link here" }
+      - { label: "Product Photo", name: image, widget: image, required: false }
+      - { label: "Dimensions", name: dimensions, widget: string, required: false, hint: "e.g. 20 x 28 cm" }
+      - { label: "Paper", name: paper, widget: string, required: false, hint: "e.g. 300gsm Fabriano Artistico" }
+      - { label: "Edition", name: edition, widget: string, required: false, hint: "e.g. 1/1 (original) or 3/10 (limited print)" }
+
+  - name: settings
+    label: "Site Settings"
+    files:
+      - name: general
+        label: "General Settings"
+        file: src/content/settings.md
+        fields:
+          - { label: "Shop tagline", name: tagline, widget: string }
+          - { label: "About blurb (short, for homepage)", name: aboutShort, widget: text }
+          - { label: "Instagram URL", name: instagram, widget: string, required: false }
+          - { label: "Hero image", name: heroImage, widget: image, required: false }
