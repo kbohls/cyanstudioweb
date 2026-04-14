@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: krista-bohlen3/cyanstudioweb
+  repo: kbohls/cyanstudioweb
   branch: main
   base_url: https://cms-oauth.krista-bohlen3.workers.dev
   auth_endpoint: auth
