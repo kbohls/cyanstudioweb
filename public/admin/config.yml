@@ -2,7 +2,7 @@ backend:
   name: github
   repo: krista-bohlen3/cyanstudioweb
   branch: main
-  base_url: https://cyan-studio-auth.netlify.app
+  base_url: https://cms-oauth.krista-bohlen3.workers.dev
   auth_endpoint: auth
 
 media_folder: public/images
