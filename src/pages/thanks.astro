@@ -1,0 +1,87 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Thank you — Cyan Studio" description="Message received." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="thanks-wrap">
+				<div class="thanks-icon">◎</div>
+				<h1>Message received</h1>
+				<p>Thanks for getting in touch. I'll get back to you within 2–3 business days.</p>
+				<div class="thanks-links">
+					<a href="/shop" class="btn-primary">Browse the shop</a>
+					<a href="/" class="btn-secondary">Back to home</a>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 3em 1.5em 5em;
+	}
+	.thanks-wrap {
+		max-width: 480px;
+		margin: 4em auto;
+		text-align: center;
+	}
+	.thanks-icon {
+		font-size: 3em;
+		color: var(--cyan-mid);
+		line-height: 1;
+		margin-bottom: 0.5em;
+	}
+	h1 {
+		font-size: 2.2em;
+		color: var(--prussian);
+		margin: 0 0 0.5em;
+	}
+	p {
+		color: var(--text-muted);
+		font-size: 0.95em;
+		line-height: 1.75;
+		margin: 0 0 2em;
+	}
+	.thanks-links {
+		display: flex;
+		gap: 1em;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.btn-primary {
+		background: var(--prussian);
+		color: var(--sand-light);
+		padding: 0.75em 1.5em;
+		border-radius: 4px;
+		text-decoration: none;
+		font-size: 0.85em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: background 0.2s;
+	}
+	.btn-primary:hover { background: var(--prussian-dark); color: var(--sand-light); }
+	.btn-secondary {
+		color: var(--prussian);
+		padding: 0.75em 1.5em;
+		border-radius: 4px;
+		border: 1.5px solid var(--prussian);
+		text-decoration: none;
+		font-size: 0.85em;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		transition: all 0.2s;
+	}
+	.btn-secondary:hover { background: var(--prussian); color: var(--sand-light); }
+</style>
