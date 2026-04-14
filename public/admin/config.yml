@@ -3,7 +3,7 @@ backend:
   repo: krista-bohlen3/cyanstudioweb
   branch: main
   base_url: https://cyan-studio-auth.netlify.app
-  auth_endpoint: /.netlify/identity
+  auth_endpoint: auth
 
 media_folder: public/images
 public_folder: /images
