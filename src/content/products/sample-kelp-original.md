@@ -1,5 +1,5 @@
 ---
-title: Seaweeds of Big Beach
+title: Seaweeds of Big Beach - Print
 category: Prints
 price: 50
 available: true
