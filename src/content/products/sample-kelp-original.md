@@ -1,14 +1,16 @@
 ---
-title: Bull Kelp Study No. 1 - EXAMPLE
-category: Originals
-price: 120
+title: Seaweeds of Big Beach
+category: Prints
+price: 50
 available: true
-description: A single stipe of bull kelp (Nereocystis luetkeana) collected from
-  the shoreline near the harbour. The long, sinuous form fills the composition
-  naturally — printed on a bright afternoon in late summer.
+description: >
+  This print (reproduction) captures nine algal species commonly found on the
+  West Coast of Vancouver Island. All seaweeds were collected by hand from Big
+  Beach in Ucluelet, BC. Labels with each species scientific name are included
+  under each exposure using handwritten transparency paper. 
 stripeLink: ""
 image: /images/1.png
-dimensions: 20 x 28 cm
-paper: 300gsm Fabriano Artistico
+dimensions: 8 x 10 inches
+paper: "Mohawk Superfine® Acid-free, Archival paper, 18pt "
 edition: 1/1
 ---
