@@ -1,11 +1,18 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<a href="/" class="logo-link" aria-label="Cyan Studio — Home">
+			<img
+				src="/images/logos/CS_primary-logo_white_rgb.svg"
+				alt="Cyan Studio"
+				class="logo"
+				width="180"
+				height="84"
+			/>
+		</a>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/shop">Shop</HeaderLink>
@@ -14,52 +21,57 @@ import { SITE_TITLE } from '../consts';
 		</div>
 	</nav>
 </header>
+
 <style>
 	header {
 		margin: 0;
-		padding: 0 1.5em;
+		padding: 0 2em;
 		background: var(--prussian);
-		box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.1em;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-	}
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-		color: var(--sand-light);
+		box-shadow: 0 2px 12px rgba(0,0,0,0.2);
 	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 56px;
+		height: 72px;
+		max-width: 960px;
+		margin: 0 auto;
 	}
-	nav a {
-		padding: 0.5em 0.75em;
-		color: var(--sand);
-		border-bottom: 3px solid transparent;
-		text-decoration: none;
-		font-size: 0.9em;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
+	.logo-link {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
 	}
-	nav a.active {
-		color: var(--sand-light);
-		border-bottom-color: var(--cyan-mid);
-	}
-	nav a:hover {
-		color: var(--sand-light);
+	.logo {
+		height: 48px;
+		width: auto;
+		display: block;
 	}
 	.internal-links {
 		display: flex;
 		gap: 0.25em;
 	}
+	nav a {
+		padding: 0.5em 0.75em;
+		color: rgba(255,255,255,0.75);
+		border-bottom: 3px solid transparent;
+		text-decoration: none;
+		font-size: 0.88em;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		transition: color 0.15s;
+	}
+	nav a:hover {
+		color: #ffffff;
+	}
+	nav a.active {
+		color: #ffffff;
+		border-bottom-color: var(--cyan-light);
+	}
 	@media (max-width: 720px) {
-		h2 { font-size: 0.95em; }
-		nav a { padding: 0.5em 0.4em; font-size: 0.8em; }
+		header { padding: 0 1em; }
+		.logo { height: 36px; }
+		nav a { padding: 0.5em 0.4em; font-size: 0.78em; }
+		nav { height: 60px; }
 	}
 </style>

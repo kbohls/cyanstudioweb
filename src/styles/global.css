@@ -1,35 +1,43 @@
 /*
   Cyan Studio — Global Styles
-  Palette inspired by cyanotype photography:
-  deep Prussian blues, warm sandy tones, soft cyan washes
+  Primary brand colour: #1b4373 (from logo)
+  Palette: navy blues, warm off-whites, soft slate accents
 */
 
 :root {
-	/* ── Cyanotype palette ── */
-	--prussian:      #1a3a4a;
-	--prussian-dark: #0f2530;
-	--prussian-mid:  #234d62;
-	--cyan-dark:     #1a6b7a;
-	--cyan-mid:      #4a9baa;
-	--cyan-light:    #7ec8d4;
-	--cyan-pale:     #eef7f9;
-	--sand-light:    #f5f0e6;
-	--sand:          #c8bfa8;
-	--sand-muted:    #8a8070;
-	--border:        #d4e6ea;
-	--text-muted:    #4a5568;
+	/* ── Brand blues (anchored to #1b4373) ── */
+	--prussian:      #1b4373;   /* primary — matches logo exactly */
+	--prussian-dark: #122d52;   /* darker navy for footer, hover */
+	--prussian-mid:  #245a96;   /* mid blue for gradients/borders */
+	--prussian-light:#2e6db5;   /* lighter blue for accents */
+
+	/* ── Complementary slate/cyan accents ── */
+	--cyan-dark:     #1a5f7a;   /* teal-leaning for links */
+	--cyan-mid:      #3d89a8;   /* mid teal for step numbers, labels */
+	--cyan-light:    #72b8cf;   /* light teal */
+	--cyan-pale:     #eaf3f7;   /* very pale teal wash for backgrounds */
+
+	/* ── Warm neutrals ── */
+	--sand-light:    #f4f1eb;   /* page background — warm off-white */
+	--sand:          #c5bbaa;   /* footer text, muted elements */
+	--sand-muted:    #8a8070;   /* very muted text */
+
+	/* ── UI ── */
+	--border:        #ccdce8;   /* border — blue-tinted */
+	--text-muted:    #3d4f63;   /* body text — blue-grey rather than neutral grey */
+	--white:         #ffffff;
 
 	/* ── Legacy vars (kept for template compatibility) ── */
-	--accent:        #1a6b7a;
-	--accent-dark:   #0f2530;
-	--black:         26, 58, 74;
-	--gray:          74, 85, 104;
-	--gray-light:    212, 230, 234;
-	--gray-dark:     26, 58, 74;
-	--gray-gradient: rgba(var(--gray-light), 40%), #f5f0e6;
+	--accent:        #1a5f7a;
+	--accent-dark:   #122d52;
+	--black:         27, 67, 115;
+	--gray:          61, 79, 99;
+	--gray-light:    204, 220, 232;
+	--gray-dark:     27, 67, 115;
+	--gray-gradient: rgba(var(--gray-light), 40%), #f4f1eb;
 	--box-shadow:
-		0 2px 6px rgba(26, 58, 74, 0.12),
-		0 8px 24px rgba(26, 58, 74, 0.10);
+		0 2px 6px rgba(27, 67, 115, 0.10),
+		0 8px 24px rgba(27, 67, 115, 0.08);
 }
 
 @font-face {
