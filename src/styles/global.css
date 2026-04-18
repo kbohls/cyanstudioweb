@@ -1,33 +1,24 @@
 /*
   Cyan Studio — Global Styles
   Primary brand colour: #1b4373 (from logo)
-  Palette: navy blues, warm off-whites, soft slate accents
 */
 
 :root {
-	/* ── Brand blues (anchored to #1b4373) ── */
-	--prussian:      #1b4373;   /* primary — matches logo exactly */
-	--prussian-dark: #122d52;   /* darker navy for footer, hover */
-	--prussian-mid:  #245a96;   /* mid blue for gradients/borders */
-	--prussian-light:#2e6db5;   /* lighter blue for accents */
-
-	/* ── Complementary slate/cyan accents ── */
-	--cyan-dark:     #1a5f7a;   /* teal-leaning for links */
-	--cyan-mid:      #3d89a8;   /* mid teal for step numbers, labels */
-	--cyan-light:    #72b8cf;   /* light teal */
-	--cyan-pale:     #eaf3f7;   /* very pale teal wash for backgrounds */
-
-	/* ── Warm neutrals ── */
-	--sand-light:    #f4f1eb;   /* page background — warm off-white */
-	--sand:          #c5bbaa;   /* footer text, muted elements */
-	--sand-muted:    #8a8070;   /* very muted text */
-
-	/* ── UI ── */
-	--border:        #ccdce8;   /* border — blue-tinted */
-	--text-muted:    #3d4f63;   /* body text — blue-grey rather than neutral grey */
+	--prussian:      #1b4373;
+	--prussian-dark: #122d52;
+	--prussian-mid:  #245a96;
+	--prussian-light:#2e6db5;
+	--cyan-dark:     #1a5f7a;
+	--cyan-mid:      #3d89a8;
+	--cyan-light:    #72b8cf;
+	--cyan-pale:     #eaf3f7;
+	--sand-light:    #f4f1eb;
+	--sand:          #c5bbaa;
+	--sand-muted:    #8a8070;
+	--border:        #ccdce8;
+	--text-muted:    #3d4f63;
 	--white:         #ffffff;
 
-	/* ── Legacy vars (kept for template compatibility) ── */
 	--accent:        #1a5f7a;
 	--accent-dark:   #122d52;
 	--black:         27, 67, 115;
@@ -80,24 +71,19 @@ h1, h2, h3, h4, h5, h6 {
 	color: var(--prussian);
 	line-height: 1.2;
 }
-h1 { font-size: 3.052em; }
-h2 { font-size: 2.441em; }
+h1 { font-size: clamp(1.8em, 5vw, 3.052em); }
+h2 { font-size: clamp(1.4em, 4vw, 2.441em); }
 h3 { font-size: 1.953em; }
 h4 { font-size: 1.563em; }
 h5 { font-size: 1.25em; }
 
 strong, b { font-weight: 700; }
-
 a { color: var(--cyan-dark); }
 a:hover { color: var(--prussian); }
-
 p { margin-bottom: 1em; }
 .prose p { margin-bottom: 2em; }
 
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
+textarea { width: 100%; font-size: 16px; }
 input { font-size: 16px; }
 table { width: 100%; }
 
@@ -119,6 +105,7 @@ pre {
 	border-radius: 8px;
 	background: var(--prussian);
 	color: var(--sand-light);
+	overflow-x: auto;
 }
 pre > code { all: unset; }
 
@@ -131,25 +118,20 @@ blockquote {
 	font-style: italic;
 }
 
-hr {
-	border: none;
-	border-top: 1px solid var(--border);
-}
+hr { border: none; border-top: 1px solid var(--border); }
 
 @media (max-width: 720px) {
 	body { font-size: 16px; }
-	main { padding: 1em; }
+	main { padding: 1.5em 1em; }
+}
+@media (max-width: 480px) {
+	main { padding: 1.25em 0.9em; }
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
+	border: 0; padding: 0; margin: 0;
 	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px 1px 1px 1px);
+	height: 1px; width: 1px; overflow: hidden;
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
 	white-space: nowrap;

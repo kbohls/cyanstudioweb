@@ -26,7 +26,7 @@ const products = allProducts.filter(p => p.data.available && p.data.category ===
 					{products.map(product => (
 						<a href={`/shop/${product.id}`} class="product-card">
 							<div class="product-img">
-								{product.data.image ? <img src={product.data.image} alt={product.data.title} /> : <div class="img-placeholder"></div>}
+								{product.data.image ? <img src={product.data.image} alt={product.data.title} width="600" height="800" loading="lazy" decoding="async" /> : <div class="img-placeholder"></div>}
 							</div>
 							<div class="product-info">
 								<h3>{product.data.title}</h3>

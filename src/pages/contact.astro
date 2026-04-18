@@ -33,7 +33,7 @@ import Footer from '../components/Footer.astro';
 							<option value="order">Question about an order</option>
 							<option value="custom">Custom commission</option>
 							<option value="wholesale">Wholesale enquiry</option>
-                            <option value="wholesale">Cyanotype workshop enquiry</option>
+                            <option value="workshop">Cyanotype workshop enquiry</option>
 							<option value="other">Something else</option>
 						</select>
 					</div>
@@ -165,7 +165,12 @@ import Footer from '../components/Footer.astro';
 	}
 
 	@media (max-width: 720px) {
+		main { padding: 2em 1.25em 4em; }
 		.contact-grid { grid-template-columns: 1fr; gap: 2em; }
 		h1 { font-size: 1.8em; }
+	}
+	@media (max-width: 480px) {
+		main { padding: 1.5em 0.9em 3em; }
+		h1 { font-size: 1.5em; }
 	}
 </style>

@@ -13,7 +13,14 @@ import HeaderLink from './HeaderLink.astro';
 				height="84"
 			/>
 		</a>
-		<div class="internal-links">
+
+		<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+
+		<div class="nav-links" id="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/shop">Shop</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
@@ -22,12 +29,32 @@ import HeaderLink from './HeaderLink.astro';
 	</nav>
 </header>
 
+<script>
+	const toggle = document.getElementById('menuToggle');
+	const navLinks = document.getElementById('nav-links');
+	toggle?.addEventListener('click', () => {
+		const isOpen = navLinks?.classList.toggle('open');
+		toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+		toggle.classList.toggle('active', isOpen ?? false);
+	});
+	navLinks?.querySelectorAll('a').forEach(link => {
+		link.addEventListener('click', () => {
+			navLinks.classList.remove('open');
+			toggle?.classList.remove('active');
+			toggle?.setAttribute('aria-expanded', 'false');
+		});
+	});
+</script>
+
 <style>
 	header {
 		margin: 0;
 		padding: 0 2em;
 		background: var(--prussian);
 		box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+		position: sticky;
+		top: 0;
+		z-index: 100;
 	}
 	nav {
 		display: flex;
@@ -37,21 +64,11 @@ import HeaderLink from './HeaderLink.astro';
 		max-width: 960px;
 		margin: 0 auto;
 	}
-	.logo-link {
-		display: flex;
-		align-items: center;
-		flex-shrink: 0;
-	}
-	.logo {
-		height: 48px;
-		width: auto;
-		display: block;
-	}
-	.internal-links {
-		display: flex;
-		gap: 0.25em;
-	}
-	nav a {
+	.logo-link { display: flex; align-items: center; flex-shrink: 0; z-index: 101; }
+	.logo { height: 44px; width: auto; display: block; }
+
+	.nav-links { display: flex; gap: 0.25em; }
+	.nav-links a {
 		padding: 0.5em 0.75em;
 		color: rgba(255,255,255,0.75);
 		border-bottom: 3px solid transparent;
@@ -60,18 +77,66 @@ import HeaderLink from './HeaderLink.astro';
 		letter-spacing: 0.07em;
 		text-transform: uppercase;
 		transition: color 0.15s;
+		white-space: nowrap;
 	}
-	nav a:hover {
-		color: #ffffff;
+	.nav-links a:hover { color: #fff; }
+	.nav-links a.active { color: #fff; border-bottom-color: var(--cyan-light); }
+
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 36px;
+		height: 36px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 4px;
+		z-index: 101;
 	}
-	nav a.active {
-		color: #ffffff;
-		border-bottom-color: var(--cyan-light);
+	.menu-toggle span {
+		display: block;
+		width: 100%;
+		height: 2px;
+		background: rgba(255,255,255,0.85);
+		border-radius: 2px;
+		transition: transform 0.25s, opacity 0.25s;
+		transform-origin: center;
 	}
-	@media (max-width: 720px) {
-		header { padding: 0 1em; }
-		.logo { height: 36px; }
-		nav a { padding: 0.5em 0.4em; font-size: 0.78em; }
+	.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+	.menu-toggle.active span:nth-child(2) { opacity: 0; }
+	.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+	@media (max-width: 640px) {
+		header { padding: 0 1.25em; }
 		nav { height: 60px; }
+		.logo { height: 34px; }
+		.menu-toggle { display: flex; }
+		.nav-links {
+			display: none;
+			flex-direction: column;
+			gap: 0;
+			position: absolute;
+			top: 60px;
+			left: 0;
+			right: 0;
+			background: var(--prussian-dark);
+			padding: 0.5em 0 1em;
+			box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+		}
+		.nav-links.open { display: flex; }
+		.nav-links a {
+			padding: 0.85em 1.5em;
+			font-size: 0.95em;
+			border-bottom: 1px solid rgba(255,255,255,0.06);
+			border-left: none;
+		}
+		.nav-links a:last-child { border-bottom: none; }
+		.nav-links a.active {
+			color: #fff;
+			border-bottom-color: rgba(255,255,255,0.06);
+			background: rgba(255,255,255,0.06);
+		}
 	}
 </style>

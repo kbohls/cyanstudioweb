@@ -188,8 +188,14 @@ import Footer from '../components/Footer.astro';
 	.aside-cta:hover { background: var(--prussian-dark); color: #fff; }
 
 	@media (max-width: 720px) {
+		main { padding: 2em 1.25em 4em; }
 		.about-grid { grid-template-columns: 1fr; gap: 2em; }
 		.about-aside { position: static; }
 		h1 { font-size: 1.9em; }
+	}
+	@media (max-width: 480px) {
+		main { padding: 1.5em 0.9em 3em; }
+		h1 { font-size: 1.6em; }
+		.aside-card { padding: 1em 1.25em; }
 	}
 </style>
