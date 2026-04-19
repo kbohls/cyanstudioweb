@@ -4,10 +4,10 @@ category: Prints
 price: 15
 available: true
 description: >-
-  This reproduction print features bright blue velella vellelas. These curious
-  creatures and commonly called "by-the-wind sailors." As their name suggests,
-  these hydrozoans use a sail to catch ocean winds and currents. As a result,
-  when they wash ashore, they do so in the thousands.
+  This reproduction print features bright blue vellela vellelas. These curious
+  creatures are commonly called "by-the-wind sailors." As their name suggests,
+  these hydrozoans use a sail to catch ocean winds and currents. When certain
+  conditions prevail, they wash ashore in the thousands.
 
 
   Each card comes with an envelope and protective sleeve. Cards are printed on archival quality paper, and could be framed as a 5x7 fine art print, in addition to serving as a gift / greeting card. 
