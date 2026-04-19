@@ -1,7 +1,7 @@
 ---
 title: Giant Kelp (Macrocystis) - Art Card
 category: Prints
-price: 20
+price: 10
 available: true
 description: >-
   This 8 × 10 inch reproduction print features a frond of giant kelp
