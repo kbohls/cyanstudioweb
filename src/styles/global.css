@@ -18,7 +18,6 @@
 	--border:        #ccdce8;
 	--text-muted:    #3d4f63;
 	--white:         #ffffff;
-
 	--accent:        #1a5f7a;
 	--accent-dark:   #122d52;
 	--black:         27, 67, 115;
@@ -46,6 +45,11 @@
 	font-display: swap;
 }
 
+/* ── Reset ── */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 body {
 	font-family: "Atkinson", sans-serif;
 	margin: 0;
@@ -54,16 +58,29 @@ body {
 	background-color: var(--sand-light);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+	/* prevent horizontal scroll on mobile */
+	overflow-x: hidden;
 	color: var(--text-muted);
 	font-size: 18px;
 	line-height: 1.7;
 }
 
+/* ── Images — never overflow their container ── */
+img {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* ── Default main — overridden per-page ── */
 main {
-	width: 960px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 3em 1.5em;
+	/* prevent content from causing horizontal scroll */
+	overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -87,10 +104,14 @@ textarea { width: 100%; font-size: 16px; }
 input { font-size: 16px; }
 table { width: 100%; }
 
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 6px;
+/* product images — keep within card */
+.product-img img,
+.product-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 0;
+	display: block;
 }
 
 code {
@@ -108,7 +129,6 @@ pre {
 	overflow-x: auto;
 }
 pre > code { all: unset; }
-
 blockquote {
 	border-left: 4px solid var(--cyan-mid);
 	padding: 0 0 0 20px;
@@ -117,21 +137,21 @@ blockquote {
 	color: var(--prussian-mid);
 	font-style: italic;
 }
-
-hr { border: none; border-top: 1px solid var(--border); }
-
-@media (max-width: 720px) {
-	body { font-size: 16px; }
-	main { padding: 1.5em 1em; }
+hr {
+	border: none;
+	border-top: 1px solid var(--border);
 }
-@media (max-width: 480px) {
-	main { padding: 1.25em 0.9em; }
+
+@media (max-width: 640px) {
+	body { font-size: 16px; }
+	main { padding: 2em 1em; }
 }
 
 .sr-only {
 	border: 0; padding: 0; margin: 0;
 	position: absolute !important;
-	height: 1px; width: 1px; overflow: hidden;
+	height: 1px; width: 1px;
+	overflow: hidden;
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
 	white-space: nowrap;

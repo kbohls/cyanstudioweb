@@ -18,24 +18,20 @@ const prints = available.filter(p => p.data.category === 'Prints');
 	<body>
 		<Header />
 		<main>
-			<div class="shop-header">
-				<p class="page-label">Shop</p>
-				<h1>The collection</h1>
-				<p class="shop-intro">Original cyanotype prints and limited edition reproductions, each made by hand in Ucluelet, BC.</p>
-				<div class="shop-filters">
-					<a href="/shop" class="filter active">All ({available.length})</a>
-					<a href="/shop/originals" class="filter">Originals ({originals.length})</a>
-					<a href="/shop/prints" class="filter">Prints ({prints.length})</a>
-				</div>
+			<p class="page-label">Shop</p>
+			<h1>The collection</h1>
+			<p class="shop-intro">Original cyanotype prints and limited edition reproductions, each made by hand in Ucluelet, BC.</p>
+			<div class="shop-filters">
+				<a href="/shop" class="filter active">All ({available.length})</a>
+				<a href="/shop/originals" class="filter">Originals ({originals.length})</a>
+				<a href="/shop/prints" class="filter">Prints ({prints.length})</a>
 			</div>
 
 			{available.length === 0 ? (
 				<div class="coming-soon">
-					<div class="cs-inner">
-						<div class="cs-icon">◎</div>
-						<h2>Products coming soon</h2>
-						<p>The shop is being stocked. Check back shortly or <a href="/contact">get in touch</a> to be notified.</p>
-					</div>
+					<div class="cs-icon">◎</div>
+					<h2>Products coming soon</h2>
+					<p>The shop is being stocked. Check back shortly or <a href="/contact">Get in touch</a> to be notified.</p>
 				</div>
 			) : (
 				<div class="product-grid">
@@ -43,7 +39,7 @@ const prints = available.filter(p => p.data.category === 'Prints');
 						<a href={`/shop/${product.id}`} class="product-card">
 							<div class="product-img">
 								{product.data.image
-									? <img src={product.data.image} alt={product.data.title} width="600" height="800" loading="lazy" decoding="async" />
+									? <img src={product.data.image} alt={product.data.title} loading="lazy" />
 									: <div class="img-placeholder"></div>
 								}
 							</div>
@@ -65,26 +61,58 @@ const prints = available.filter(p => p.data.category === 'Prints');
 <style>
 	main { max-width: 960px; margin: 0 auto; padding: 3em 1.5em 5em; }
 	.page-label { font-size: 0.72em; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan-mid); margin: 0 0 0.75em; }
-	h1 { font-size: 2.2em; color: var(--prussian); margin: 0 0 0.5em; }
-	.shop-intro { color: var(--text-muted); font-size: 0.95em; margin: 0 0 1.75em; max-width: 55ch; }
-	.shop-filters { display: flex; gap: 0.5em; margin-bottom: 2.5em; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+	h1 { font-size: clamp(1.6em, 4vw, 2.2em); color: var(--prussian); margin: 0 0 0.5em; }
+	.shop-intro { color: var(--text-muted); font-size: 0.95em; margin: 0 0 1.75em; }
+	.shop-filters {
+		display: flex;
+		gap: 0;
+		margin-bottom: 2.5em;
+		border-bottom: 1px solid var(--border);
+	}
 	.filter {
-		padding: 0.5em 1em; font-size: 0.82em; letter-spacing: 0.06em; text-transform: uppercase;
-		color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent;
-		margin-bottom: -1px; transition: all 0.15s; white-space: nowrap;
+		padding: 0.5em 1em;
+		font-size: 0.82em;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+		text-decoration: none;
+		border-bottom: 2px solid transparent;
+		margin-bottom: -1px;
+		transition: all 0.15s;
+		white-space: nowrap;
 	}
 	.filter:hover { color: var(--prussian); }
 	.filter.active { color: var(--prussian); border-bottom-color: var(--prussian); }
 
-	.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5em; }
+	.product-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.5em;
+	}
 	.product-card {
-		text-decoration: none; border: 1px solid var(--border); border-radius: 8px;
-		overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; background: white;
+		text-decoration: none;
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		overflow: hidden;
+		background: white;
+		transition: box-shadow 0.2s, transform 0.2s;
+		min-width: 0;
 	}
 	.product-card:hover { box-shadow: var(--box-shadow); transform: translateY(-2px); }
-	.product-img { aspect-ratio: 3/4; overflow: hidden; background: var(--cyan-pale); }
-	.product-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
-	.img-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--cyan-pale) 0%, #d4eef2 100%); }
+	.product-img {
+		aspect-ratio: 3 / 4;
+		overflow: hidden;
+		background: var(--cyan-pale);
+		width: 100%;
+	}
+	.product-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		border-radius: 0;
+	}
+	.img-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--cyan-pale) 0%, #cde3ef 100%); }
 	.product-info { padding: 1em 1.1em 1.25em; }
 	.product-category { font-size: 0.68em; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan-dark); display: block; margin-bottom: 0.3em; }
 	.product-title { font-size: 0.95em; color: var(--prussian); margin: 0 0 0.25em; line-height: 1.3; }
@@ -92,20 +120,21 @@ const prints = available.filter(p => p.data.category === 'Prints');
 	.product-price { font-size: 0.9em; font-weight: 700; color: var(--prussian); margin: 0; }
 
 	.coming-soon { background: var(--cyan-pale); border: 1px solid var(--border); border-radius: 10px; padding: 4em 2em; text-align: center; }
-	.cs-inner { max-width: 360px; margin: 0 auto; }
 	.cs-icon { font-size: 2.5em; color: var(--cyan-mid); margin-bottom: 0.5em; line-height: 1; }
 	.coming-soon h2 { font-size: 1.2em; color: var(--prussian); margin: 0 0 0.6em; }
 	.coming-soon p { font-size: 0.88em; color: var(--text-muted); line-height: 1.7; margin: 0; }
-	.coming-soon a { color: var(--cyan-dark); }
 
-	@media (max-width: 720px) {
-		main { padding: 2em 1.25em 4em; }
+	@media (max-width: 768px) {
+		main { padding: 2.5em 1.25em 4em; }
 		.product-grid { grid-template-columns: repeat(2, 1fr); gap: 1em; }
-		h1 { font-size: 1.8em; }
 	}
 	@media (max-width: 480px) {
-		main { padding: 1.5em 0.9em 3em; }
-		.product-grid { gap: 0.75em; }
-		.product-info { padding: 0.65em 0.75em 0.75em; }
+		main { padding: 2em 0.85em 3em; }
+		.product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6em; }
+		.product-info { padding: 0.6em 0.65em 0.75em; }
+		.product-title { font-size: 0.82em; }
+		.product-price { font-size: 0.82em; }
+		.shop-filters { overflow-x: auto; }
+		.filter { font-size: 0.75em; padding: 0.5em 0.75em; }
 	}
 </style>

@@ -32,11 +32,14 @@ import HeaderLink from './HeaderLink.astro';
 <script>
 	const toggle = document.getElementById('menuToggle');
 	const navLinks = document.getElementById('nav-links');
+
 	toggle?.addEventListener('click', () => {
 		const isOpen = navLinks?.classList.toggle('open');
 		toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 		toggle.classList.toggle('active', isOpen ?? false);
 	});
+
+	// Close menu when a link is clicked
 	navLinks?.querySelectorAll('a').forEach(link => {
 		link.addEventListener('click', () => {
 			navLinks.classList.remove('open');
@@ -64,10 +67,23 @@ import HeaderLink from './HeaderLink.astro';
 		max-width: 960px;
 		margin: 0 auto;
 	}
-	.logo-link { display: flex; align-items: center; flex-shrink: 0; z-index: 101; }
-	.logo { height: 44px; width: auto; display: block; }
+	.logo-link {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		z-index: 101;
+	}
+	.logo {
+		height: 44px;
+		width: auto;
+		display: block;
+	}
 
-	.nav-links { display: flex; gap: 0.25em; }
+	/* ── Nav links ── */
+	.nav-links {
+		display: flex;
+		gap: 0.25em;
+	}
 	.nav-links a {
 		padding: 0.5em 0.75em;
 		color: rgba(255,255,255,0.75);
@@ -80,8 +96,12 @@ import HeaderLink from './HeaderLink.astro';
 		white-space: nowrap;
 	}
 	.nav-links a:hover { color: #fff; }
-	.nav-links a.active { color: #fff; border-bottom-color: var(--cyan-light); }
+	.nav-links a.active {
+		color: #fff;
+		border-bottom-color: var(--cyan-light);
+	}
 
+	/* ── Hamburger button (hidden on desktop) ── */
 	.menu-toggle {
 		display: none;
 		flex-direction: column;
@@ -104,15 +124,19 @@ import HeaderLink from './HeaderLink.astro';
 		transition: transform 0.25s, opacity 0.25s;
 		transform-origin: center;
 	}
+	/* Animate to X when active */
 	.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 	.menu-toggle.active span:nth-child(2) { opacity: 0; }
 	.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+	/* ── Mobile ── */
 	@media (max-width: 640px) {
 		header { padding: 0 1.25em; }
 		nav { height: 60px; }
 		.logo { height: 34px; }
+
 		.menu-toggle { display: flex; }
+
 		.nav-links {
 			display: none;
 			flex-direction: column;

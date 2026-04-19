@@ -10,8 +10,6 @@ const today = new Date();
 					src="/images/logos/CS_secondary-logo_white_rgb.svg"
 					alt="Cyan Studio"
 					class="footer-logo"
-					width="140"
-					height="65"
 				/>
 			</a>
 			<span class="footer-location">Ucluelet, BC &nbsp;·&nbsp; Traditional Nuu-chah-nulth Territory</span>
@@ -29,7 +27,7 @@ const today = new Date();
 
 <style>
 	footer {
-		padding: 2.5em 2em 2em;
+		padding: 2.5em 1.5em 2em;
 		background: var(--prussian-dark);
 		color: var(--sand);
 	}
@@ -45,11 +43,32 @@ const today = new Date();
 		border-bottom: 1px solid rgba(255,255,255,0.1);
 		margin-bottom: 1.25em;
 	}
-	.footer-brand { display: flex; flex-direction: column; gap: 0.6em; }
-	.footer-logo { height: 40px; width: auto; display: block; opacity: 0.9; transition: opacity 0.2s; }
+	.footer-brand {
+		display: flex;
+		flex-direction: column;
+		gap: 0.6em;
+	}
+	.footer-logo {
+		height: 38px;
+		width: auto;
+		display: block;
+		opacity: 0.9;
+		transition: opacity 0.2s;
+		/* prevent logo overflowing on mobile */
+		max-width: 160px;
+	}
 	.footer-logo:hover { opacity: 1; }
-	.footer-location { font-size: 0.72em; color: var(--sand-muted); letter-spacing: 0.04em; }
-	.footer-links { display: flex; gap: 1.5em; align-items: center; }
+	.footer-location {
+		font-size: 0.72em;
+		color: var(--sand-muted);
+		letter-spacing: 0.04em;
+	}
+	.footer-links {
+		display: flex;
+		gap: 1.5em;
+		align-items: center;
+		flex-wrap: wrap;
+	}
 	.footer-links a {
 		color: var(--sand);
 		text-decoration: none;
@@ -66,9 +85,9 @@ const today = new Date();
 		color: var(--sand-muted);
 		text-align: center;
 	}
-	@media (max-width: 640px) {
-		footer { padding: 2em 1.25em 1.5em; }
-		.footer-inner { flex-direction: column; gap: 1.5em; align-items: flex-start; }
-		.footer-links { gap: 1.25em; }
+	@media (max-width: 480px) {
+		footer { padding: 2em 1em 1.5em; }
+		.footer-inner { flex-direction: column; gap: 1.25em; }
+		.footer-links { gap: 1em; }
 	}
 </style>
