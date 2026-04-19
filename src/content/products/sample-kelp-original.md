@@ -1,7 +1,7 @@
 ---
 title: Seaweeds of Big Beach - Print
 category: Prints
-price: 50
+price: 30
 available: true
 description: >
   This print (reproduction) captures nine algal species commonly found on the

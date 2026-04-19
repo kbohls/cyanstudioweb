@@ -1,7 +1,7 @@
 ---
 title: Herring Spawn - Art Card
 category: Prints
-price: 10
+price: 15
 available: true
 description: >-
   This reproduction print documents a monumental event - the herring spawn. Each

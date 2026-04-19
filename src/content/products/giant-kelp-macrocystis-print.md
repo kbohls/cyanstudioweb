@@ -1,7 +1,7 @@
 ---
 title: Giant Kelp (Macrocystis) - Print
 category: Prints
-price: 50
+price: 30
 available: true
 description: This 8 × 10 inch reproduction print features a frond of giant kelp
   (Macrocystis). Natural variations in tone and texture occur through the
