@@ -1,7 +1,7 @@
 ---
 title: Roe on Surfgrass - Art Card
 category: Prints
-price: 20
+price: 10
 available: true
 description: >-
   This reproduction print features blades of surfgrass (Phyllospadix) covered in
