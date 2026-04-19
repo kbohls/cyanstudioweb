@@ -1,10 +1,10 @@
 ---
-title: Vellela vellelas - Art Card
+title: Velella velellas - Art Card
 category: Prints
 price: 15
 available: true
 description: >-
-  This reproduction print features bright blue vellela vellelas. These curious
+  This reproduction print features bright blue Velella velellas. These curious
   creatures are commonly called "by-the-wind sailors." As their name suggests,
   these hydrozoans use a sail to catch ocean winds and currents. When certain
   conditions prevail, they wash ashore in the thousands.
