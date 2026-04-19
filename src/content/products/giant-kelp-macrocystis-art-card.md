@@ -6,7 +6,7 @@ available: true
 description: >-
   This 8 × 10 inch reproduction print features a frond of giant kelp
   (Macrocystis). Natural variations in tone and texture occur through the
-  interaction of cyanotype chemistry with the kelp’s blades and nematocysts.
+  interaction of cyanotype chemistry with the kelp’s bulbs and blades.
 
 
   Each card comes with an envelope and protective sleeve. Cards are printed on archival quality paper, and could be framed as a 5x7 fine art print, in addition to serving as a gift / greeting card. 
