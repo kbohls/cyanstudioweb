@@ -14,12 +14,52 @@ export async function getStaticPaths() {
 
 const product = Astro.props;
 const { title, category, price, available, description, stripeLink, image, dimensions, paper, edition } = product.data;
+
+const productJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Product",
+	"name": title,
+	"description": description,
+	"image": image ? new URL(image, Astro.site).toString() : undefined,
+	"brand": {
+		"@type": "Brand",
+		"name": "Cyan Studio"
+	},
+	"category": category,
+	...(dimensions && { "width": dimensions }),
+	...(paper && { "material": paper }),
+	"offers": {
+		"@type": "Offer",
+		"priceCurrency": "CAD",
+		"price": price.toFixed(2),
+		"availability": available ? "https://schema.org/InStock" : "https://schema.org/SoldOut",
+		"url": new URL(`/shop/${product.id}`, Astro.site).toString(),
+		"seller": {
+			"@type": "Organization",
+			"name": "Cyan Studio"
+		},
+		"shippingDetails": {
+			"@type": "OfferShippingDetails",
+			"shippingDestination": {
+				"@type": "DefinedRegion",
+				"addressCountry": "CA"
+			}
+		}
+	}
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`${title} — Cyan Studio`} description={description} />
+		<BaseHead
+			title={`${title} — Cyan Studio`}
+			description={description}
+			image={image}
+			type="product"
+			keywords={`${title}, cyanotype print, ${category.toLowerCase()}, handmade art Ucluelet, coastal cyanotype, buy cyanotype Canada`}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />
 	</head>
 	<body>
 		<Header />

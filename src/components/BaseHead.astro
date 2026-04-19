@@ -5,10 +5,56 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	type?: 'website' | 'product';
+	keywords?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = '/images/logos/CS_primary-logo_blue_rgb.svg' } = Astro.props;
+const {
+	title,
+	description,
+	image = '/images/profile.jpg',
+	type = 'website',
+	keywords = 'cyanotype prints, cyanotype art, coastal art, seaweed prints, botanical prints, handmade prints, Ucluelet BC, Vancouver Island art, solar printing, blue prints, original art Canada',
+} = Astro.props;
+
+const ogImage = new URL(image, Astro.site);
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": type === 'product' ? "Product" : "WebSite",
+	"name": "Cyan Studio",
+	"url": "https://cyanstudio.ca",
+	"description": description,
+	...(type !== 'product' && {
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://cyanstudio.ca/shop?q={search_term_string}",
+			"query-input": "required name=search_term_string"
+		}
+	}),
+};
+
+const localBusinessJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "LocalBusiness",
+	"name": "Cyan Studio",
+	"description": "Original cyanotype prints handcrafted in Ucluelet, BC. Sun-printed using hand-collected seaweeds and coastal botanicals.",
+	"url": "https://cyanstudio.ca",
+	"image": ogImage.toString(),
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Ucluelet",
+		"addressRegion": "BC",
+		"addressCountry": "CA"
+	},
+	"founder": {
+		"@type": "Person",
+		"name": "Krista Bohlen"
+	},
+	"areaServed": "Canada",
+	"priceRange": "$$"
+};
 ---
 
 <!-- Global Metadata -->
@@ -28,17 +74,31 @@ const { title, description, image = '/images/logos/CS_primary-logo_blue_rgb.svg'
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Krista Bohlen" />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="geo.region" content="CA-BC" />
+<meta name="geo.placename" content="Ucluelet, British Columbia" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={title} />
+<meta property="og:site_name" content="Cyan Studio" />
+<meta property="og:locale" content="en_CA" />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={title} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
