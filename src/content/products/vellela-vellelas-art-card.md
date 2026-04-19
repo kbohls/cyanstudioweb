@@ -1,7 +1,7 @@
 ---
 title: Vellela vellelas - Art Card
 category: Prints
-price: 20
+price: 10
 available: true
 description: >-
   This reproduction print features bright blue velella vellelas. These curious
